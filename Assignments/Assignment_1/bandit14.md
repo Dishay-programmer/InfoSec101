@@ -1,34 +1,22 @@
 # Bandit Level 14 to 15 Writeup
 
+Author: [Dishay Mehta](https://github.com/Dishay-programmer)
 
-Author: [Akash Biswas](https://github.com/akashkb-a01)
-
-Problem Page: [bandit14](https://overthewire.org/wargames/bandit/bandit15.html)
+Problem Page: [bandit15](https://overthewire.org/wargames/bandit/bandit15.html)
 
 ## List of Commands Used
 ```
-ssh  - OpenSSH SSH client (remote login program)
-echo - display a line of text
-nc   - arbitrary TCP and UDP connections and listens
-exit - To close the connection to ssh server
-
+ls - list files in a directory
+nc - used for just about anything under the sun involving TCP or UDP .i.e in simple language can be used to transfer data from one host to the post of other
 ```
 
 ## Walkthrough
-First I tried to understand the function of each command given at the problem page. After that, I shortlisted telnet and nc and went through their man page. On the man page of nc towards the end just before EXAMPLES , I found "$ echo "QUIT" | nc host.example.com 20-30" and gave it a try by substituting appropriate information.
+So I did bandit level 13 inorder to find where exactly is the password for bandit14 stored as this level required me to find the exact location of that file and basically transfer it to the port `30000` of hostname `localhost`.Then I searched about `telnet` and `nc` on google and with proper googling came across a site which made me understand what exactly the `nc` command did. I'll provide the link for the same-[nc command](https://linux.die.net/man/1/nc) :wink:
 
 ## Password
 `BfMYroe26WYalil77FoDi9qh59eK5xNr`
 
 ## Bash/Python script to automate the process
 ```
-#!/bin/expect -f
-spawn ssh bandit14@bandit.labs.overthewire.org -p 2220
-expect "password: "
-send "4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e\r"
-expect "$ "
-send "echo 4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e | nc localhost 30000\r"
-expect "$ "
-send "exit\r"
-
+ssh bandit14@bandit.labs.overthewire.org -p 2220 "nc localhost 30000 < /etc/bandit_pass/bandit14"
 ```
