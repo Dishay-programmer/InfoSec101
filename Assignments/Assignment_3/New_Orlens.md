@@ -1,7 +1,7 @@
 # MicroCTF Writeup
 
 
-Author: [Dishay Mehta]() 
+Author: [Dishay Mehta](https://github.com/Dishay952/InfoSec101/tree/main/Assignments/Assignment_3) 
 
 Level: New Orleans
 
